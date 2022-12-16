@@ -4,28 +4,28 @@
     </x-slot>
 
     <section class="row">
-        <x-card-sum 
-            text="Total Customer" 
-            value="22" 
-            icon="users" 
+        <x-card-sum
+            text="Total Member"
+            value="{{$total_member}}"
+            icon="users"
             color="warning"
         />
-        <x-card-sum 
-            text="Total Visitor" 
-            value="1450" 
-            icon="chart-line" 
+        <x-card-sum
+            text="Total Kategori"
+            value="{{$total_kategori}}"
+            icon="chart-line"
             color="primary"
         />
-        <x-card-sum 
-            text="Income" 
-            value="$1200" 
-            icon="money-bill" 
+        <x-card-sum
+            text="Income"
+            value="$1200"
+            icon="money-bill"
             color="success"
         />
-        <x-card-sum 
-            text="Total Product" 
-            value="42" 
-            icon="box" 
+        <x-card-sum
+            text="Total Product"
+            value="{{$total_produk}}"
+            icon="box"
             color="danger"
         />
     </section>

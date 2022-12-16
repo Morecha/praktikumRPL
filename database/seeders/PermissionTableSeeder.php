@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace Database\Seeders;
-  
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-  
+
 class PermissionTableSeeder extends Seeder
 {
     /**
@@ -24,9 +24,10 @@ class PermissionTableSeeder extends Seeder
            'member-edit',
            'member-delete',
            'setting-list',
-           'setting-edit'
+           'setting-edit',
+           'None'
         ];
-     
+
         foreach ($permissions as $permission) {
              Permission::create(['name' => $permission]);
         }

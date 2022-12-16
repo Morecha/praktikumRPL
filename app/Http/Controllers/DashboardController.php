@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\SettingRequest;
 use Carbon\Carbon;
+use App\Models\barang;
+use App\Models\User;
+use App\Models\katbarang;
 
 class DashboardController extends Controller
 {
@@ -17,9 +20,14 @@ class DashboardController extends Controller
     */
     public function index()
     {
+        #total produk
+        $total_produk = barang::all()->count();
+        $total_member = User::all()->count();
+        $total_kategori = katbarang::all()->count();
+        // dd($total_member);
         $logs = Activity::where('causer_id', auth()->id())->latest()->paginate(5);
 
-        return view('admin.dashboard', compact('logs'));
+        return view('admin.dashboard', compact('logs','total_produk','total_member','total_kategori'));
     }
 
     /**
@@ -78,7 +86,7 @@ class DashboardController extends Controller
             }
 
             $data['password'] = Hash::make($request->new_password);
-        } 
+        }
 
         // for update avatar
         if($request->avatar) {
@@ -88,10 +96,10 @@ class DashboardController extends Controller
                 unlink(storage_path('app/public/'.auth()->user()->avatar));
             }
         }
-        
+
         // update profile
         auth()->user()->update($data);
-        
+
         return redirect()->back()->with('success', 'Profile updated!');
     }
 
@@ -117,7 +125,7 @@ class DashboardController extends Controller
         }
 
         return '';
-        
+
     }
 
     public function delete_logs()
